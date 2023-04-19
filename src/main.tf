@@ -14,7 +14,7 @@ resource "scaleway_rdb_instance" "main" {
   is_ha_cluster = var.cluster_mode == "highly-available" ? true : false
   user_name     = "root"
   password      = random_password.root_user_password.result
-  # region = ""
+  region = var.network.specs.scw.region
   disable_backup            = var.backups.enabled ? false : true
   backup_schedule_frequency = var.backups.enabled ? var.backups.frequency_days : null
   backup_schedule_retention = var.backups.enabled ? var.backups.retention_days : null
