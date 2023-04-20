@@ -1,9 +1,9 @@
 locals {
   data_authentication = {
-    hostname     = scaleway_rdb_instance.main.private_network[0].hostname
-    username = "root"
-    password = random_password.root_user_password.result
-    port     = scaleway_rdb_instance.main.private_network[0].port
+    username = module.database_mysql.username
+    password = module.database_mysql.password
+    hostname = module.database_mysql.hostname
+    port     = module.database_mysql.port
   }
 
   data_infrastructure = {
@@ -34,7 +34,7 @@ locals {
     }
     specs = {
       rdbms = {
-        engine = "mysql"
+        engine  = "mysql"
         version = var.mysql_version
       }
     }
@@ -43,7 +43,7 @@ locals {
 
 resource "massdriver_artifact" "authentication" {
   field                = "authentication"
-  provider_resource_id = scaleway_rdb_instance.main.id
-  name                 = "SCW MySQL Instance"
+  provider_resource_id = module.database_mysql.id
+  name                 = "Scaleway MySQL Instance"
   artifact             = jsonencode(local.artifact)
 }
