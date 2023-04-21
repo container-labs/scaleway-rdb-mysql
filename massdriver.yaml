@@ -1,8 +1,8 @@
 # This file will be used to generate all of the schema-*.json files in a bundle
 schema: draft-07
-name: "scw-rdb-mysql"
-description: "Scaleway Database RDB MySQL"
-source_url: github.com/massdriver-cloud/scw-rdb-mysql
+name: "scaleway-rdb-mysql"
+description: "Scaleway RDB MySQL"
+source_url: github.com/container-labs/scaleway-rdb-mysql
 access: "public"
 type: infrastructure
 
